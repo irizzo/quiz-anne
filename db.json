@@ -33,6 +33,10 @@
     "colors": {
       "primary": "#A44414",
       "secondary": "#EECFA9",
+      "alternative": "-",
+      "primaryT": "#A44414BB",
+      "secondaryT": "#EECFA9BB",
+      "alternativeT": "-",
       "mainBg": "#A1611E",
       "contrastText": "#FFFFFF",
       "wrong": "#FF5722",

@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import db from '../../../db.json'
 
 const FooterWrapper = styled.footer`
-  background-color: #eecfa9bb;
-  padding: 20px;
+  background-color: ${({ theme }) => theme.colors.secondaryT};
+  padding: 10px 20px;
   display: flex;
   align-items: center;
-  border-radius: 4px; 
+  border-radius: 4px;
   img {
     width: 58px;
     margin-right: 23px;

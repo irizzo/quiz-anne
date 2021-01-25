@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import db from '../db.json'
+import './_app.css'
 
 // css global que o styled components cria
 const GlobalStyle = createGlobalStyle`
@@ -12,9 +13,12 @@ const GlobalStyle = createGlobalStyle`
     /* New styles */
     display: flex;
     flex-direction: column;
-    font-family: 'Lato', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.secondary};
     // Deixa branco no começo
     color: ${({ theme }) => theme.colors.contrastText};
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: ${({ theme }) => theme.fonts.primary};
   }
   html, body {
     min-height: 100vh;

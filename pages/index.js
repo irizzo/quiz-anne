@@ -11,10 +11,6 @@ import Widget from '../src/components/Widget'
 //   color: ${({ theme }) => theme.colors.primary};
 // `
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat&display=swap');
-</style>
-
 export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
@@ -33,17 +29,17 @@ export default function Home() {
         <QuizLogo/>
         <Widget>
           <Widget.Header>
-            <h1>The B99 Master</h1>
+            <h1 style={{fontSize:"22px"}}>Anne With An "E" Quiz</h1>
           </Widget.Header>
 
           <Widget.Content>
-            <p>Quer testar seus conhecimentos sobre Brooklyn Nine-Nine?</p>
+            <p>Quer testar seus conhecimentos sobre Anne With An "E"?</p>
           </Widget.Content>
         </Widget>
 
         <Widget>
           <Widget.Header>
-          <h1>Quizes da Galera</h1>
+          <h1 style={{fontSize:"22px"}}>Quizes da Galera</h1>
           </Widget.Header>
 
           <Widget.Content>
