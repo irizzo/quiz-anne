@@ -11,6 +11,10 @@ import Widget from '../src/components/Widget'
 //   color: ${({ theme }) => theme.colors.primary};
 // `
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat&display=swap');
+</style>
+
 export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
@@ -21,18 +25,19 @@ export const QuizContainer = styled.div`
     padding: 15px;
   }
 `
+
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
-        {/* <QuizLogo/> */}
+        <QuizLogo/>
         <Widget>
           <Widget.Header>
-            <h1>The CSS Master</h1>
+            <h1>The B99 Master</h1>
           </Widget.Header>
 
           <Widget.Content>
-            <p>A andiw a qiow mmaoidh a opajwioakniowud </p>
+            <p>Quer testar seus conhecimentos sobre Brooklyn Nine-Nine?</p>
           </Widget.Content>
         </Widget>
 
@@ -42,7 +47,9 @@ export default function Home() {
           </Widget.Header>
 
           <Widget.Content>
-            <p>A andiw a qiow mmaoidh a opajwioakniowud </p>
+            <p>Quiz 1</p>
+            <p>Quiz 2</p>
+            <p>Quiz 3</p>
           </Widget.Content>
         </Widget>
         <Footer/>
