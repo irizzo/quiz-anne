@@ -21,35 +21,46 @@ export const QuizContainer = styled.div`
     padding: 15px;
   }
 `
+
+export const QuizContainer = styled.div`
+  width: 100%;
+  max-width: 350px;
+  padding-top: 45px;
+  margin: auto 10%;
+  @media screen and (max-width: 500px) {
+    margin: auto;
+    padding: 15px;
+  }
+`
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
-      <QuizLogo/>
+        <QuizLogo/>
         <Widget>
           <Widget.Header>
-            <h1>The CSS Master</h1>
+            <h1 style={{fontSize:"22px"}}>Anne With An "E" Quiz</h1>
           </Widget.Header>
 
           <Widget.Content>
-            <p>A andiw a qiow mmaoidh a opajwioakniowud </p>
+            <p>Quer testar seus conhecimentos sobre Anne With An "E"?</p>
           </Widget.Content>
         </Widget>
 
         <Widget>
           <Widget.Header>
-          <h1>Quizes da Galera</h1>
+          <h1 style={{fontSize:"22px"}}>Quizes da Galera</h1>
           </Widget.Header>
 
           <Widget.Content>
-            <p>quiz 1</p>
-            <p>quiz 2</p>
-            <p>quiz 3</p>
+            <p>Quiz 1</p>
+            <p>Quiz 2</p>
+            <p>Quiz 3</p>
           </Widget.Content>
         </Widget>
         <Footer/>
       </QuizContainer>
-      <GitHubCorner projectURL="https://github.com/irizzo/quiz"/>
+      <GitHubCorner projectUrl="https://github.com/irizzo/quiz" />
     </QuizBackground>
   )
 }
