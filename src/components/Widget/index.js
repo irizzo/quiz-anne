@@ -4,10 +4,10 @@ const Widget = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => {
+  background-color: ${({ theme }) =>
     // Aqui criamos a função pra retornar a cor, mas pode ser feito igual ali em cima
-    return theme.colors.mainBg;
-  }};
+    theme.colors.mainBg
+};
   border-radius: 4px;
   overflow: hidden;
   h1, h2, h3 {
