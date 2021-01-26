@@ -1,6 +1,7 @@
 // Precisamos importar o react só por causa do eslint
 import React from 'react'
 import styled from 'styled-components'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import db from '../db.json'
@@ -24,6 +25,9 @@ export const QuizContainer = styled.div`
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>AluraQuiz - Anne</title>
+      </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget>

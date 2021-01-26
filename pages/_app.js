@@ -39,7 +39,6 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>AluraQuiz - Anne</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Roboto&display=swap" rel="stylesheet" />
       </Head>
