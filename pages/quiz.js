@@ -19,8 +19,8 @@ export default function QuizPage() {
           </Widget.Header>
 
           <Widget.Content>
-            <h2 style={{ fontFamily: '\'Montserrat\', sans-serif', fontWeight: '300' }}> Quantos anos Anne tinha quando foi adotada pelos irmãos A?</h2>
-            <Widget.Image backgroundImage={db.bg} />
+            <h2 style={{ fontFamily: '\'Montserrat\', sans-serif', fontWeight: '300' }}> Quantos anos Anne tinha quando foi adotada pelos irmãos?</h2>
+            {/* <Widget.Image backgroundImage={db.bg} /> */}
           </Widget.Content>
         </Widget>
       </QuizContainer>
