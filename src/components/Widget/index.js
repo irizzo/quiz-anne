@@ -4,12 +4,11 @@ const Widget = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) =>
-    // Aqui criamos a função pra retornar a cor, mas pode ser feito igual ali em cima
-    theme.colors.mainBg
-};
-  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.mainBg};
+  border-radius: ${({ theme }) => theme.borderRadius.secondary};
   overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: '300';
   h1, h2, h3 {
     font-size: 16px;
     font-weight: 700;
@@ -35,6 +34,7 @@ Widget.Header = styled.header`
 `
 Widget.Content = styled.div`
   padding: 24px 32px 32px 32px;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
   & > *:first-child {
     margin-top: 0;
   }
@@ -47,4 +47,10 @@ Widget.Content = styled.div`
   }
 `
 
+Widget.Image = styled.img`
+  width: 100%;
+  background-position: center;
+  background-image: url(${({ backgroundImage }) => backgroundImage}) ;
+  background-color: red;
+`
 export default Widget

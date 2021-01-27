@@ -1,12 +1,12 @@
+import React from 'react'
 import styled from 'styled-components'
-import db from '../../../db.json'
 
 const FooterWrapper = styled.footer`
   background-color: ${({ theme }) => theme.colors.secondaryT};
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadius.secondary};
   img {
     width: 58px;
     margin-right: 23px;

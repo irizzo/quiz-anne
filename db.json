@@ -21,8 +21,8 @@
       "description": "Faz tempo em haha",
       "answer": 0,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+        "background: linear-gradient(#e66465, #9198e5);",
+        "background: gradient(#e66465, #9198e5);"
       ]
     }
   ],
@@ -33,18 +33,21 @@
     "colors": {
       "primary": "#A44414",
       "secondary": "#EECFA9",
-      "alternative": "-",
       "primaryT": "#A44414BB",
       "secondaryT": "#EECFA9BB",
-      "alternativeT": "-",
-      "mainBg": "#A1611E",
+      "mainBg": "#DF9B53",
+      "disabledBg": "#D4D4D4",
+      "disabledText": "#8C8C8C",
       "contrastText": "#FFFFFF",
       "wrong": "#FF5722",
       "success": "#5FB962"
     },
-    "borderRadius": "8px",
-    "fonts": {
-      "primary": "'Dancing Script', cursive",
+    "borderRadius": {
+      "primary": "4px",
+      "secondary": "8px"
+    },
+    "fontFamily": {
+      "primary": "'Nothing You Could Do', cursive",
       "secondary": "'Montserrat', sans-serif"
     }
   }
