@@ -33,4 +33,7 @@ const Button = styled.button`
   }
 `
 
+Button.Outlined = styled.button`
+`
+
 export default Button

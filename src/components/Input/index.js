@@ -1,7 +1,8 @@
-// import React from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Input = styled.input`
+const InputBase = styled.input`
   display: block;
   width: 100%;
   height: 35px;
@@ -26,4 +27,25 @@ const Input = styled.input`
   }
 `
 
-export default Input
+export default function Input({ onChange, placeholder, ...props }) {
+  return (
+    <div>
+      <InputBase
+        placeholder={placeholder}
+        onChange={onChange}
+        // {...props} faz com que todas as propriedades passadas sejam colocadas aqui
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      />
+    </div>
+  )
+}
+
+// Não é obrigatório mas pode fazer isso para poder ter certeza do que ta chegando nas props. Fazemos uma validação das props (props validation)
+// É uma boa prática
+Input.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+}

@@ -23,5 +23,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'linebreak-style': 'off',
     'no-console': 'off',
+    'max-len': ['warn', { tabWidth: 2 }, { ignoreComments: true }],
   },
 }

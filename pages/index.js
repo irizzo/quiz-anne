@@ -22,11 +22,23 @@ export default function Home() {
         <QuizLogo />
         <Widget>
           <Widget.Header>
-            <h1 style={{ fontSize: '22px', fontWeight: '400' }}>Anne With An E Quiz</h1>
+            <h1
+              style={{ fontSize: '22px', fontWeight: '400' }}
+            >
+              Anne With An E Quiz
+            </h1>
           </Widget.Header>
 
           <Widget.Content>
-            <h2 style={{ fontFamily: '\'Montserrat\', sans-serif', fontWeight: '300', lineHeight: '18px' }}>Quer testar seus conhecimentos sobre Anne With An E?</h2>
+            <h2
+              style={{
+                fontFamily: '\'Montserrat\', sans-serif',
+                fontWeight: '300',
+                lineHeight: '18px',
+              }}
+            >
+              Quer testar seus conhecimentos sobre Anne With An E?
+            </h2>
             <form onSubmit={function enviarForm(e) {
               // impede o recamento padrão depois do submit
               e.preventDefault()
@@ -35,11 +47,10 @@ export default function Home() {
             }}
             >
               <Input
-                // eslint-disable-next-line react/jsx-no-bind
-                onChange={function getName(eventInfo) {
-                  setName(eventInfo.target.value)
-                }}
+                onChange={(eventInfo) => setName(eventInfo.target.value)}
                 placeholder="Digite Seu Nome"
+                name="nomeDoJogador"
+                value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
                 Jogar
@@ -50,7 +61,11 @@ export default function Home() {
 
         <Widget>
           <Widget.Header>
-            <h1 style={{ fontSize: '22px', fontWeight: '400' }}>Quizes da Galera</h1>
+            <h1
+              style={{ fontSize: '22px', fontWeight: '400' }}
+            >
+              Quizes da Galera
+            </h1>
           </Widget.Header>
 
           <Widget.Content>

@@ -46,11 +46,21 @@ Widget.Content = styled.div`
     padding: 0;
   }
 `
-
-Widget.Image = styled.img`
-  width: 100%;
-  background-position: center;
-  background-image: url(${({ backgroundImage }) => backgroundImage}) ;
-  background-color: red;
+Widget.Topic = styled.a`
+  outline: 0;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.contrastText};
+  background-color: ${({ theme }) => `${theme.colors.primary}40`};
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  transition: .3s;
+  display: block;
+  
+  &:hover,
+  &:focus {
+    opacity: .5;
+  }
 `
 export default Widget
