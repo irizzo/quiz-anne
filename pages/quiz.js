@@ -1,12 +1,68 @@
+/* eslint-disable comma-dangle */
 import React from 'react'
 
 import db from '../db.json'
+import AlternativesForm from '../src/components/AlternativesForm'
 import Button from '../src/components/Button'
 import GitHubCorner from '../src/components/GitHubCorner'
 import QuizBackground from '../src/components/QuizBackground'
 import QuizContainer from '../src/components/QuizContainer'
 import QuizLogo from '../src/components/QuizLogo'
 import Widget from '../src/components/Widget'
+
+// eslint-disable-next-line react/prop-types
+function ResultsWidget({ results }) {
+  return (
+    <Widget>
+      <Widget.Header>
+        <h1>Resultados</h1>
+      </Widget.Header>
+
+      <Widget.Content>
+        <h2>
+          Você Acertou
+          {' '}
+          {/* eslint-disable-next-line react/prop-types */}
+          <span
+            style={{
+              color: `${db.theme.colors.primary}`,
+              fontSize: '25px',
+            }}
+          >
+            {/* eslint-disable-next-line react/prop-types */}
+            {/* {results.reduce(
+              (currentScore, questionResult) => {
+                const isResultTrue = questionResult === true
+                if (isResultTrue) {
+                  return currentScore + 1
+                }
+                return currentScore
+              }, 0
+            )} */}
+
+            {/* eslint-disable-next-line react/prop-types */}
+            {results.filter((result) => result).length}
+          </span>
+          {' '}
+          Questões
+        </h2>
+        <ul>
+          {/* eslint-disable-next-line react/prop-types */}
+          {results.map((result, index) => (
+            <li key={`result_${result}`}>
+              Pergunta
+              {' 0'}
+              {index + 1}
+              {' :'}
+              {result === true ? ' Acertou :D' : ' Errou :('}
+            </li>
+          ))}
+
+        </ul>
+      </Widget.Content>
+    </Widget>
+  )
+}
 
 // eslint-disable-next-line react/prop-types
 function LoadingWidget({ name }) {
@@ -33,8 +89,16 @@ function QuestionWidget({
   questionsTotal,
   // eslint-disable-next-line react/prop-types
   onSubmit,
+  // eslint-disable-next-line react/prop-types
+  addResult,
 }) {
   const questionID = `question_${questionIndex}`
+  // eslint-disable-next-line max-len
+  const [selectedAlternative, setSelectedAlternative] = React.useState(undefined)
+  // eslint-disable-next-line react/prop-types
+  const isCorrect = selectedAlternative === question.answer
+  const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false)
+
   return (
     <Widget>
       <Widget.Header>
@@ -72,33 +136,52 @@ function QuestionWidget({
           {question.description}
         </p>
 
-        <form onSubmit={(eventInfo) => {
+        <AlternativesForm onSubmit={(eventInfo) => {
           eventInfo.preventDefault()
-          onSubmit()
+          setIsQuestionSubmited(true)
+          setTimeout(() => {
+            addResult(isCorrect)
+            onSubmit()
+            setIsQuestionSubmited(false)
+            setSelectedAlternative(undefined)
+          }, 3 * 1000)
         }}
         >
           {/* eslint-disable-next-line react/prop-types */}
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeID = `alternative_${alternativeIndex}`
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR'
+            const isSelected = selectedAlternative === alternativeIndex
             return (
               <Widget.Topic
                 as="label"
+                key={alternativeID}
                 htmlFor={alternativeID}
+                data-selected={isSelected}
+                data-status={isQuestionSubmited && alternativeStatus}
               >
                 <input
                   id={alternativeID}
                   type="radio"
                   name={questionID}
                   style={{ display: 'none' }}
+                  onChange={() => setSelectedAlternative(alternativeIndex)}
                 />
                 {alternative}
               </Widget.Topic>
             )
           })}
-          <Button type="submit">
+          <Button type="submit" disabled={selectedAlternative === undefined}>
             Confirmar
           </Button>
-        </form>
+
+          <p>
+            selected:
+            {` ${selectedAlternative}`}
+          </p>
+          {isQuestionSubmited && isCorrect && <p>Você Acertou</p>}
+          {isQuestionSubmited && !isCorrect && <p>Você Errou</p>}
+        </AlternativesForm>
       </Widget.Content>
     </Widget>
   )
@@ -107,7 +190,7 @@ function QuestionWidget({
 const screenStates = {
   QUIZ: 'QUIZ',
   LOADING: 'LOADING',
-  RESULT: 'RESULT',
+  RESULTS: 'RESULTS',
 }
 
 export default function QuizPage() {
@@ -124,6 +207,14 @@ export default function QuizPage() {
   const [currentQuestion, setCurrentQuestion] = React.useState(0)
   const questionIndex = currentQuestion
   const question = db.questions[questionIndex]
+  const [results, setResults] = React.useState([])
+
+  function addResult(result) {
+    setResults([
+      ...results,
+      result,
+    ])
+  }
 
   React.useEffect(() => {
     // fetch...
@@ -138,7 +229,7 @@ export default function QuizPage() {
     if (nextQuestionIndex < (questionsTotal)) {
       setCurrentQuestion(questionIndex + 1)
     } else {
-      setScreenState(screenStates.RESULT)
+      setScreenState(screenStates.RESULTS)
     }
   }
   return (
@@ -159,12 +250,11 @@ export default function QuizPage() {
             questionIndex={questionIndex}
             questionsTotal={questionsTotal}
             onSubmit={handleQuizSubmit}
+            addResult={addResult}
           />
         )}
-        {screenState === screenStates.RESULT && (
-          <div>
-            Você acertou X questões
-          </div>
+        {screenState === screenStates.RESULTS && (
+          <ResultsWidget results={results} />
         )}
 
       </QuizContainer>
