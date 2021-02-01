@@ -1,12 +1,14 @@
 // Precisamos importar o react só por causa do eslint
 import React from 'react'
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
 import db from '../db.json'
 import Button from '../src/components/Button'
 import Footer from '../src/components/Footer'
 import GitHubCorner from '../src/components/GitHubCorner'
 import Input from '../src/components/Input'
+import Link from '../src/components/Link'
 import QuizBackground from '../src/components/QuizBackground'
 import QuizContainer from '../src/components/QuizContainer'
 import QuizLogo from '../src/components/QuizLogo'
@@ -20,7 +22,19 @@ export default function Home() {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{
+            delay: 0,
+            duration: 0.5,
+          }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '-100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1
               style={{ fontSize: '22px', fontWeight: '400' }}
@@ -59,7 +73,19 @@ export default function Home() {
           </Widget.Content>
         </Widget>
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{
+            delay: 0.3,
+            duration: 0.5,
+          }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '-100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1
               style={{ fontSize: '22px', fontWeight: '400' }}
@@ -69,12 +95,40 @@ export default function Home() {
           </Widget.Header>
 
           <Widget.Content>
-            <p>Quiz 1</p>
-            <p>Quiz 2</p>
-            <p>Quiz 3</p>
+            <ul>
+              {db.external.map((link) => {
+                const [projctName, githubUser] = link
+                  .replace(/\//g, '')
+                  .replace('https:', '')
+                  .replace('.vercel.app', '')
+                  .split('.')
+
+                return (
+                  <li key={link}>
+                    <Widget.Topic
+                      as={Link}
+                      href={`/quiz/${projctName}___${githubUser}`}
+                    >
+                      {`${githubUser}/${projctName}`}
+                    </Widget.Topic>
+                  </li>
+                )
+              })}
+            </ul>
           </Widget.Content>
         </Widget>
-        <Footer />
+        <Footer
+          as={motion.section}
+          transition={{
+            duration: 0.6,
+          }}
+          variants={{
+            show: { opacity: 1 },
+            hidden: { opacity: 0 },
+          }}
+          initial="hidden"
+          animate="show"
+        />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/irizzo/quiz-anne" />
     </QuizBackground>

@@ -19,7 +19,7 @@ module.exports = {
   ],
   rules: {
     semi: ['error', 'never'],
-    quotes: ['warn', 'single'],
+    quotes: ['error', 'single'],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'linebreak-style': 'off',
     'no-console': 'off',
@@ -29,5 +29,7 @@ module.exports = {
       { ignoreComments: true },
       { ignoreUrls: true },
     ],
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 }

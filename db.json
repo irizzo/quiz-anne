@@ -47,7 +47,8 @@
     }
   ],
   "external": [
-    ""
+    "https://quiz-star-wars.mattheussal.vercel.app",
+    "https://quizName.user.vercel.app/"
   ],
   "theme": {
     "colors": {

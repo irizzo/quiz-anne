@@ -1,14 +1,14 @@
 /* eslint-disable comma-dangle */
 import React from 'react'
 
-import db from '../db.json'
-import AlternativesForm from '../src/components/AlternativesForm'
-import Button from '../src/components/Button'
-import GitHubCorner from '../src/components/GitHubCorner'
-import QuizBackground from '../src/components/QuizBackground'
-import QuizContainer from '../src/components/QuizContainer'
-import QuizLogo from '../src/components/QuizLogo'
-import Widget from '../src/components/Widget'
+import AlternativesForm from '../../components/AlternativesForm'
+import BackLinkArrow from '../../components/BackLinkArrow'
+import Button from '../../components/Button'
+import GitHubCorner from '../../components/GitHubCorner'
+import QuizBackground from '../../components/QuizBackground'
+import QuizContainer from '../../components/QuizContainer'
+import QuizLogo from '../../components/QuizLogo'
+import Widget from '../../components/Widget'
 
 // eslint-disable-next-line react/prop-types
 function ResultsWidget({ results }) {
@@ -29,17 +29,6 @@ function ResultsWidget({ results }) {
               fontSize: '25px',
             }}
           >
-            {/* eslint-disable-next-line react/prop-types */}
-            {/* {results.reduce(
-              (currentScore, questionResult) => {
-                const isResultTrue = questionResult === true
-                if (isResultTrue) {
-                  return currentScore + 1
-                }
-                return currentScore
-              }, 0
-            )} */}
-
             {/* eslint-disable-next-line react/prop-types */}
             {results.filter((result) => result).length}
           </span>
@@ -102,6 +91,7 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h1
           style={{ fontSize: '22px', fontWeight: '400' }}
         >
@@ -193,21 +183,16 @@ const screenStates = {
   RESULTS: 'RESULTS',
 }
 
-export default function QuizPage() {
-  // Efeitos (react effects)
-  // quando você ta usando hooks: React.useEffect
-
-  // quando vc ta usando classe:
-  // nasce === didMount
-  // atualizado === willUpdate
-  // morre === willUnmount
-  // const screenState = screenStates.LOADING
+// eslint-disable-next-line react/prop-types
+export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING)
-  const questionsTotal = db.questions.length
+  // eslint-disable-next-line react/prop-types
+  const questionsTotal = externalQuestions.length
   const [currentQuestion, setCurrentQuestion] = React.useState(0)
   const questionIndex = currentQuestion
-  const question = db.questions[questionIndex]
+  const question = externalQuestions[questionIndex]
   const [results, setResults] = React.useState([])
+  const bg = externalBg
 
   function addResult(result) {
     setResults([
@@ -217,11 +202,9 @@ export default function QuizPage() {
   }
 
   React.useEffect(() => {
-    // fetch...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ)
     }, 1 * 1300)
-    // nasce (didMount)
   }, [])
 
   function handleQuizSubmit() {
@@ -233,16 +216,9 @@ export default function QuizPage() {
     }
   }
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={bg}>
       <QuizContainer>
         <QuizLogo />
-
-        {/*
-          if (screenState === screenStates.LOADING) {
-            return <LoadingWidget />
-          }
-          é a mesma coisa que a comparação ali de baixo
-        */}
         {screenState === screenStates.LOADING && <LoadingWidget />}
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
