@@ -10,7 +10,6 @@ import QuizContainer from '../../src/components/QuizContainer'
 import QuizLogo from '../../src/components/QuizLogo'
 import Widget from '../../src/components/Widget'
 
-// eslint-disable-next-line react/prop-types
 function ResultsWidget({ results }) {
   return (
     <Widget>
@@ -22,32 +21,18 @@ function ResultsWidget({ results }) {
         <h2>
           Você Acertou
           {' '}
-          {/* eslint-disable-next-line react/prop-types */}
           <span
             style={{
               color: `${db.theme.colors.primary}`,
               fontSize: '25px',
             }}
           >
-            {/* eslint-disable-next-line react/prop-types */}
-            {/* {results.reduce(
-              (currentScore, questionResult) => {
-                const isResultTrue = questionResult === true
-                if (isResultTrue) {
-                  return currentScore + 1
-                }
-                return currentScore
-              }, 0
-            )} */}
-
-            {/* eslint-disable-next-line react/prop-types */}
             {results.filter((result) => result).length}
           </span>
           {' '}
           Questões
         </h2>
         <ul>
-          {/* eslint-disable-next-line react/prop-types */}
           {results.map((result, index) => (
             <li key={`result_${result}`}>
               Pergunta
@@ -64,7 +49,6 @@ function ResultsWidget({ results }) {
   )
 }
 
-// eslint-disable-next-line react/prop-types
 function LoadingWidget({ name }) {
   return (
     <Widget>
@@ -81,21 +65,15 @@ function LoadingWidget({ name }) {
 }
 
 function QuestionWidget({
-  // eslint-disable-next-line react/prop-types
   question,
-  // eslint-disable-next-line react/prop-types
   questionIndex,
-  // eslint-disable-next-line react/prop-types
   questionsTotal,
-  // eslint-disable-next-line react/prop-types
   onSubmit,
-  // eslint-disable-next-line react/prop-types
   addResult,
 }) {
   const questionID = `question_${questionIndex}`
   // eslint-disable-next-line max-len
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined)
-  // eslint-disable-next-line react/prop-types
   const isCorrect = selectedAlternative === question.answer
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false)
 
@@ -116,7 +94,6 @@ function QuestionWidget({
             fontWeight: '300',
           }}
         >
-          {/* eslint-disable-next-line react/prop-types */}
           {question.title}
         </h2>
         <img
@@ -127,12 +104,10 @@ function QuestionWidget({
             objectFit: 'cover',
             marginTop: '20px',
           }}
-          // eslint-disable-next-line react/prop-types
           src={question.image}
         />
 
         <p>
-          {/* eslint-disable-next-line react/prop-types */}
           {question.description}
         </p>
 
@@ -147,7 +122,6 @@ function QuestionWidget({
           }, 3 * 1000)
         }}
         >
-          {/* eslint-disable-next-line react/prop-types */}
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeID = `alternative_${alternativeIndex}`
             const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR'
@@ -194,14 +168,6 @@ const screenStates = {
 }
 
 export default function QuizPage() {
-  // Efeitos (react effects)
-  // quando você ta usando hooks: React.useEffect
-
-  // quando vc ta usando classe:
-  // nasce === didMount
-  // atualizado === willUpdate
-  // morre === willUnmount
-  // const screenState = screenStates.LOADING
   const [screenState, setScreenState] = React.useState(screenStates.LOADING)
   const questionsTotal = db.questions.length
   const [currentQuestion, setCurrentQuestion] = React.useState(0)
@@ -217,11 +183,9 @@ export default function QuizPage() {
   }
 
   React.useEffect(() => {
-    // fetch...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ)
     }, 1 * 1300)
-    // nasce (didMount)
   }, [])
 
   function handleQuizSubmit() {
@@ -236,13 +200,6 @@ export default function QuizPage() {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-
-        {/*
-          if (screenState === screenStates.LOADING) {
-            return <LoadingWidget />
-          }
-          é a mesma coisa que a comparação ali de baixo
-        */}
         {screenState === screenStates.LOADING && <LoadingWidget />}
         {screenState === screenStates.QUIZ && (
           <QuestionWidget

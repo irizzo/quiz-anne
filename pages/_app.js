@@ -1,11 +1,10 @@
-// Precisamos importar o react só por causa do eslint
+/* eslint-disable max-len */
 import React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Head from 'next/head'
 
 import db from '../db.json'
 
-// css global que o styled components cria
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -33,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
 `
 const { theme } = db
 
-// eslint-disable-next-line react/prop-types
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -58,7 +56,6 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
       </ThemeProvider>
     </>

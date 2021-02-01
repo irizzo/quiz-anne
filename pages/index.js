@@ -54,7 +54,7 @@ export default function Home() {
               Quer testar seus conhecimentos sobre Anne With An E?
             </h2>
             <form onSubmit={function enviarForm(e) {
-              // impede o recamento padrão depois do submit
+              // impede o recarregamento padrão depois do submit
               e.preventDefault()
               // eslint-disable-next-line no-restricted-globals
               router.push(`/quiz?name=${name}`)

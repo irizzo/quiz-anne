@@ -10,7 +10,6 @@ import QuizContainer from '../../components/QuizContainer'
 import QuizLogo from '../../components/QuizLogo'
 import Widget from '../../components/Widget'
 
-// eslint-disable-next-line react/prop-types
 function ResultsWidget({ results }) {
   return (
     <Widget>
@@ -22,21 +21,18 @@ function ResultsWidget({ results }) {
         <h2>
           Você Acertou
           {' '}
-          {/* eslint-disable-next-line react/prop-types */}
           <span
             style={{
               color: `${db.theme.colors.primary}`,
               fontSize: '25px',
             }}
           >
-            {/* eslint-disable-next-line react/prop-types */}
             {results.filter((result) => result).length}
           </span>
           {' '}
           Questões
         </h2>
         <ul>
-          {/* eslint-disable-next-line react/prop-types */}
           {results.map((result, index) => (
             <li key={`result_${result}`}>
               Pergunta
@@ -53,7 +49,6 @@ function ResultsWidget({ results }) {
   )
 }
 
-// eslint-disable-next-line react/prop-types
 function LoadingWidget({ name }) {
   return (
     <Widget>
@@ -70,21 +65,15 @@ function LoadingWidget({ name }) {
 }
 
 function QuestionWidget({
-  // eslint-disable-next-line react/prop-types
   question,
-  // eslint-disable-next-line react/prop-types
   questionIndex,
-  // eslint-disable-next-line react/prop-types
   questionsTotal,
-  // eslint-disable-next-line react/prop-types
   onSubmit,
-  // eslint-disable-next-line react/prop-types
   addResult,
 }) {
   const questionID = `question_${questionIndex}`
   // eslint-disable-next-line max-len
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined)
-  // eslint-disable-next-line react/prop-types
   const isCorrect = selectedAlternative === question.answer
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false)
 
@@ -106,7 +95,6 @@ function QuestionWidget({
             fontWeight: '300',
           }}
         >
-          {/* eslint-disable-next-line react/prop-types */}
           {question.title}
         </h2>
         <img
@@ -117,12 +105,10 @@ function QuestionWidget({
             objectFit: 'cover',
             marginTop: '20px',
           }}
-          // eslint-disable-next-line react/prop-types
           src={question.image}
         />
 
         <p>
-          {/* eslint-disable-next-line react/prop-types */}
           {question.description}
         </p>
 
@@ -137,7 +123,6 @@ function QuestionWidget({
           }, 3 * 1000)
         }}
         >
-          {/* eslint-disable-next-line react/prop-types */}
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeID = `alternative_${alternativeIndex}`
             const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR'
@@ -183,10 +168,8 @@ const screenStates = {
   RESULTS: 'RESULTS',
 }
 
-// eslint-disable-next-line react/prop-types
 export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING)
-  // eslint-disable-next-line react/prop-types
   const questionsTotal = externalQuestions.length
   const [currentQuestion, setCurrentQuestion] = React.useState(0)
   const questionIndex = currentQuestion
